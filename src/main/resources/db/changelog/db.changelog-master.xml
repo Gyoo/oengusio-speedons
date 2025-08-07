@@ -6,6 +6,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+
     <changeSet id="20190428-01" author="gyoo">
         <createTable tableName="users">
             <column name="id" type="serial">
@@ -499,7 +500,7 @@
 
     <changeSet id="20191226-01" author="gyoo">
         <addColumn tableName="bid">
-            <column name="id" type="serial" beforeColumn="incentive_id">
+            <column name="id" type="serial">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="approved" type="boolean" defaultValueBoolean="true"/>
@@ -1322,6 +1323,19 @@
         <addColumn tableName="category">
             <column name="expected_runners" type="int" defaultValueNumeric="0" />
             <column name="created_at" type="timestamp with time zone" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="gyoo" id="20250807-1">
+        <addColumn tableName="category">
+            <column name="can_race" type="boolean" defaultValueBoolean="false" />
+            <column name="highlights" type="varchar(1000)" />
+        </addColumn>
+
+        <renameColumn tableName="game" oldColumnName="ratio" newColumnName="content_warnings"/>
+        <modifyDataType tableName="game" columnName="content_warnings" newDataType="varchar(200)"/>
+        <addColumn tableName="game">
+            <column name="themes" type="varchar(200)"/>
         </addColumn>
     </changeSet>
 </databaseChangeLog>

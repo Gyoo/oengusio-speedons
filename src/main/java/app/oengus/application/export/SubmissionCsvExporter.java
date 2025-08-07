@@ -135,7 +135,7 @@ public class SubmissionCsvExporter implements Exporter {
         record.add(game.getName());
         record.add(StringUtils.normalizeSpace(game.getDescription()));
         record.add(game.getConsole() + (game.isEmulated() ? "*" : ""));
-        record.add(game.getRatio());
+        record.add(game.getContentWarnings());
         record.add(category.getName());
         record.add(StringUtils.normalizeSpace(category.getDescription()));
         record.add(lang.getString("run.type." + category.getType().name()));

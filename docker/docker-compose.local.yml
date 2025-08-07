@@ -1,0 +1,43 @@
+services:
+    database:
+        container_name: oengus_pg
+        image: 'postgres:latest'
+        ports:
+            - 5432:5432
+
+        environment:
+            POSTGRES_USER: oengus
+            POSTGRES_PASSWORD: oengus
+            POSTGRES_DB: oengus
+
+    rabbitmq:
+        container_name: oengus_mq
+        image: rabbitmq:management
+        ports:
+            - 5672:5672
+            - 15672:15672 #Remove if not using management
+        volumes:
+            - ./data/:/var/lib/rabbitmq/
+            - ./log/:/var/log/rabbitmq
+        restart: unless-stopped
+
+    smtp4dev:
+        image: rnwood/smtp4dev:v3
+        restart: always
+        ports:
+            # Change the number before : to the port the web interface should be accessible on
+            - '5000:80'
+            # Change the number before : to the port the SMTP server should be accessible on
+            - '25:25'
+            # Change the number before : to the port the IMAP server should be accessible on
+            - '143:143'
+        volumes:
+            - smtp4dev-data:/smtp4dev
+        environment:
+            - ServerOptions__Urls=http://*:80
+            - ServerOptions__HostName=smtp4dev
+            - ServerOptions__Mailboxes__0=Speedons=no-reply@speedons.fr
+
+volumes:
+    smtp4dev-data:
+

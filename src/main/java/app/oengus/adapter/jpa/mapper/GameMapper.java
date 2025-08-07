@@ -14,13 +14,18 @@ import org.mapstruct.*;
     }
 )
 public interface GameMapper {
+
+    @BeanMapping(ignoreUnmappedSourceProperties = { "themes" })
     @Mapping(target = "submissionId", source = "submission.id")
+    @Mapping(target = "themes", expression = "java(entity.getThemes() == null || entity.getThemes().isBlank() ? List.of() : List.of(entity.getThemes().split(\",\")))")
     Game toDomain(GameEntity entity);
 
     // TODO: fix
+    @BeanMapping(ignoreUnmappedSourceProperties = { "themes" })
     @Mapping(target = "submission", ignore = true)
     @Mapping(target = "fresh", ignore = true)
     @Mapping(target = "submission.id", source = "submissionId")
+    @Mapping(target = "themes", expression = "java(String.join(\",\", game.getThemes()))")
 //    @InheritInverseConfiguration(name = "toDomain")
     GameEntity fromDomain(Game game);
 }

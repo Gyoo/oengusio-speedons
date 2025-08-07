@@ -13,7 +13,8 @@ public class V1GameDto {
     private String name;
     private String description;
     private String console;
-    private String ratio;
+    private String contentWarnings;
+    private List<String> themes;
     private boolean emulated;
     private List<V1CategoryDto> categories;
 }

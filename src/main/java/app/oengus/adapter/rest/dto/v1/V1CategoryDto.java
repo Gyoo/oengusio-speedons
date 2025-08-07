@@ -22,6 +22,8 @@ public class V1CategoryDto {
     private String code;
     @Min(value = 0)
     private int expectedRunnerCount;
+    private Boolean canRace;
+    private String highlights;
     private List<OpponentCategoryDto> opponents;
 
     // This is only for backwards compatibility

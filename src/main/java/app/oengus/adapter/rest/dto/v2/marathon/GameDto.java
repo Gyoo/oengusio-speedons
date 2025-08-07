@@ -1,58 +1,19 @@
 package app.oengus.adapter.rest.dto.v2.marathon;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
 public class GameDto {
     private int id;
     private String name;
     private String description;
     private String console;
-    private String ratio;
+    private String contentWarnings;
+    private List<String> themes = new ArrayList<>();
     private boolean emulated;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getConsole() {
-        return console;
-    }
-
-    public void setConsole(String console) {
-        this.console = console;
-    }
-
-    public String getRatio() {
-        return ratio;
-    }
-
-    public void setRatio(String ratio) {
-        this.ratio = ratio;
-    }
-
-    public boolean isEmulated() {
-        return emulated;
-    }
-
-    public void setEmulated(boolean emulated) {
-        this.emulated = emulated;
-    }
 }

@@ -26,6 +26,8 @@ public class Category {
     private RunType type;
     private String code;
     private int expectedRunnerCount;
+    private Boolean canRace;
+    private String highlights;
 
     private ZonedDateTime createdAt;
 

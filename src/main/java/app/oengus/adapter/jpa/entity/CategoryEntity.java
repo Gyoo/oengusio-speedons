@@ -72,6 +72,14 @@ public class CategoryEntity {
     @Column(name = "created_at")
     private ZonedDateTime createdAt;
 
+    @Column(name = "can_race")
+    private Boolean canRace;
+
+    @Column(name = "highlights")
+    @NotBlank
+    @Size(max = 1000)
+    private String highlights;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,12 +87,13 @@ public class CategoryEntity {
         CategoryEntity category = (CategoryEntity) o;
         return Objects.equals(id, category.id) && Objects.equals(name, category.name) &&
             Objects.equals(estimate, category.estimate) && Objects.equals(description, category.description) &&
-            Objects.equals(video, category.video) && type == category.type;
+            Objects.equals(video, category.video) && type == category.type && Objects.equals(canRace, category.canRace) &&
+            Objects.equals(highlights, category.highlights);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, estimate, description, video, type);
+        return Objects.hash(id, name, estimate, description, video, type, canRace, highlights);
     }
 
     @Deprecated(forRemoval = true)

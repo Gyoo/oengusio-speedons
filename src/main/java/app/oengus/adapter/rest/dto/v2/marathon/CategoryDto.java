@@ -17,6 +17,8 @@ public class CategoryDto {
     private Duration estimate;
     private String description;
     private String video;
+    private Boolean canRace;
+    private String highlights;
     // TODO: include code as well?
     private RunType type;
     private int gameId;

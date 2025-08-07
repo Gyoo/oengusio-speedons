@@ -40,10 +40,14 @@ public class GameEntity {
     @Size(max = 45) // can grow upto 100 due to db type being varchar(100)
     private String console;
 
-    @Column(name = "ratio")
+    @Column(name = "content_warnings")
+    @Size(max = 200)
+    private String contentWarnings;
+
+    @Column(name = "themes")
     @NotBlank
-    @Size(max = 10)
-    private String ratio;
+    @Size(max = 200)
+    private String themes;
 
     @Column(name = "emulated")
     private boolean emulated;
@@ -57,12 +61,12 @@ public class GameEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameEntity game = (GameEntity) o;
-        return emulated == game.emulated && Objects.equals(id, game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description) && Objects.equals(console, game.console) && Objects.equals(ratio, game.ratio);
+        return emulated == game.emulated && Objects.equals(id, game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description) && Objects.equals(console, game.console) && Objects.equals(contentWarnings, game.contentWarnings) && Objects.equals(themes, game.themes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, console, ratio, emulated, categories);
+        return Objects.hash(id, name, description, console, contentWarnings, emulated, categories);
     }
 
     @Deprecated(forRemoval = true)
