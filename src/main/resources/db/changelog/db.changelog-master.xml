@@ -1338,4 +1338,27 @@
             <column name="themes" type="varchar(200)"/>
         </addColumn>
     </changeSet>
+
+    <changeSet author="gyoo" id="20250808-1">
+        <dropTable tableName="donation_incentive_link"/>
+        <dropTable tableName="bid"/>
+        <dropTable tableName="incentive"/>
+        <dropTable tableName="donation_extra_data"/>
+        <dropTable tableName="donation"/>
+
+        <createTable tableName="incentive">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="game_id" type="int"/>
+            <column name="name" type="text"/>
+            <column name="description" type="text"/>
+            <column name="incentive_type" type="text"/>
+            <column name="duration" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="incentive" baseColumnNames="game_id"
+                                 constraintName="fk_incentive_game"
+                                 referencedTableName="game"
+                                 referencedColumnNames="id"/>
+    </changeSet>
 </databaseChangeLog>

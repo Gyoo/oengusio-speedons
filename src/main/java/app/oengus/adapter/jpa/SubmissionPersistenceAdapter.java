@@ -156,6 +156,13 @@ public class SubmissionPersistenceAdapter implements SubmissionPersistencePort {
 
                 category.setGame(game);
             });
+
+            game.getIncentives().forEach((incentive) -> {
+                if (incentive.getId() < 1) {
+                    incentive.setId(null);
+                }
+                incentive.setGame(game);
+            });
         });
 
         final var savedEntity = this.repository.save(rawEntity);

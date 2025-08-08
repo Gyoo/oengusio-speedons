@@ -35,7 +35,6 @@ public class MarathonService {
     private final SubmissionPersistencePort submissionPersistencePort;
     private final ScheduleService scheduleService;
     private final CategoryPersistencePort categoryPersistencePort;
-    private final IncentiveService incentiveService;
     private final SelectionService selectionService;
     private final OengusWebhookService webhookService;
     private final UserSecurityPort securityPort;
@@ -214,7 +213,6 @@ public class MarathonService {
 
     public void delete(final String marathonId) throws NotFoundException {
         this.marathonPersistencePort.findById(marathonId).ifPresent((marathon) -> {
-            this.incentiveService.deleteByMarathon(marathonId);
             this.scheduleService.deleteByMarathon(marathonId);
             this.submissionService.deleteByMarathon(marathon.getId());
 

@@ -56,17 +56,21 @@ public class GameEntity {
     @OrderBy("id ASC")
     private List<CategoryEntity> categories;
 
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id ASC")
+    private List<IncentiveEntity> incentives;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameEntity game = (GameEntity) o;
-        return emulated == game.emulated && Objects.equals(id, game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description) && Objects.equals(console, game.console) && Objects.equals(contentWarnings, game.contentWarnings) && Objects.equals(themes, game.themes);
+        return emulated == game.emulated && Objects.equals(id, game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description) && Objects.equals(console, game.console) && Objects.equals(contentWarnings, game.contentWarnings) && Objects.equals(themes, game.themes) && Objects.equals(incentives, game.incentives);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, console, contentWarnings, emulated, categories);
+        return Objects.hash(id, name, description, console, contentWarnings, emulated, categories, incentives);
     }
 
     @Deprecated(forRemoval = true)
@@ -103,6 +107,7 @@ public class GameEntity {
         game.getCategories().forEach((category) -> {
             Hibernate.initialize(category.getOpponents());
         });
+        Hibernate.initialize(game.getIncentives());
     }
 
     public static GameEntity ofId(int id) {

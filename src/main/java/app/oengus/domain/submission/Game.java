@@ -22,4 +22,5 @@ public class Game {
     private boolean emulated;
 
     private List<Category> categories = new ArrayList<>();
+    private List<Incentive> incentives = new ArrayList<>();
 }

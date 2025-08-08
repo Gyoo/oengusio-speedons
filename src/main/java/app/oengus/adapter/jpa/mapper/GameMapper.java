@@ -11,6 +11,7 @@ import org.mapstruct.*;
     unmappedTargetPolicy = ReportingPolicy.ERROR,
     uses = {
         CategoryMapper.class,
+        IncentiveMapper.class,
     }
 )
 public interface GameMapper {

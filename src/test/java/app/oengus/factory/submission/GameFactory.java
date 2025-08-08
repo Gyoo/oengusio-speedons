@@ -2,6 +2,7 @@ package app.oengus.factory.submission;
 
 import app.oengus.domain.submission.Game;
 import app.oengus.factory.AbstractFactory;
+import org.apache.logging.log4j.util.Strings;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class GameFactory extends AbstractFactory<Game> {
         game.setName(faker.appliance().equipment());
         game.setDescription(limit(faker.lorem().paragraph(10), 500));
         game.setConsole(faker.videoGame().platform());
-        game.setRatio("4:3");
+        game.setContentWarnings(Strings.join(faker.lorem().words(3), ','));
         game.setEmulated(faker.bool().bool());
 
         return game;

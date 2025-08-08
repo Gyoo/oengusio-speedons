@@ -17,4 +17,5 @@ public class V1GameDto {
     private List<String> themes;
     private boolean emulated;
     private List<V1CategoryDto> categories;
+    private List<V1IncentiveDto> incentives;
 }

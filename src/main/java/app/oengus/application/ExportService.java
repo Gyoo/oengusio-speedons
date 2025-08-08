@@ -10,7 +10,6 @@ import java.io.Writer;
 @Service
 @RequiredArgsConstructor
 public class ExportService {
-    private final DonationsCsvExporter donationsCsvExporter;
     private final ScheduleCsvExporter scheduleCsvExporter;
     private final ScheduleJsonExporter scheduleJsonExporter;
     private final ScheduleIcalExporter scheduleIcalExporter;
@@ -34,10 +33,5 @@ public class ExportService {
     public Writer exportScheduleToIcal(final String marathonId, final int itemId, final String zoneId, final String locale)
         throws IOException {
         return this.scheduleIcalExporter.export(marathonId, itemId, zoneId, locale);
-    }
-
-    public Writer exportDonationsToCsv(final String marathonId, final int itemId, final String zoneId, final String locale)
-        throws IOException {
-        return this.donationsCsvExporter.export(marathonId, itemId, zoneId, locale);
     }
 }
