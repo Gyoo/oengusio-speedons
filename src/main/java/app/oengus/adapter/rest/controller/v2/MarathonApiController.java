@@ -6,11 +6,14 @@ import app.oengus.adapter.rest.dto.v1.MarathonBasicInfoDto;
 import app.oengus.adapter.rest.dto.v2.MarathonHomeDto;
 import app.oengus.adapter.rest.dto.v2.marathon.MarathonSettingsDto;
 import app.oengus.adapter.rest.dto.v2.marathon.QuestionDto;
+import app.oengus.adapter.rest.dto.v2.marathon.ThemeDto;
 import app.oengus.adapter.rest.dto.v2.marathon.request.ModeratorsUpdateRequest;
 import app.oengus.adapter.rest.dto.v2.marathon.request.QuestionsUpdateRequest;
+import app.oengus.adapter.rest.dto.v2.marathon.request.ThemesUpdateRequest;
 import app.oengus.adapter.rest.dto.v2.users.ProfileDto;
 import app.oengus.adapter.rest.mapper.MarathonDtoMapper;
 import app.oengus.adapter.rest.mapper.QuestionDtoMapper;
+import app.oengus.adapter.rest.mapper.ThemeDtoMapper;
 import app.oengus.adapter.rest.mapper.UserDtoMapper;
 import app.oengus.application.MarathonService;
 import app.oengus.domain.OengusUser;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import static app.oengus.adapter.rest.helper.HeaderHelpers.cachingHeaders;
@@ -32,6 +36,7 @@ import static app.oengus.adapter.rest.helper.HeaderHelpers.cachingHeaders;
 public class MarathonApiController implements MarathonApi {
     private final MarathonDtoMapper mapper;
     private final QuestionDtoMapper questionMapper;
+    private final ThemeDtoMapper themeMapper;
     private final UserDtoMapper userDtoMapper;
     private final MarathonService marathonService;
 
@@ -161,6 +166,30 @@ public class MarathonApiController implements MarathonApi {
     @Override
     public ResponseEntity<BooleanStatusDto> removeQuestion(String marathonId, int questionId) {
         this.marathonService.removeQuestion(marathonId, questionId);
+
+        return ResponseEntity.ok()
+            .cacheControl(CacheControl.noCache())
+            .body(new BooleanStatusDto(true));
+    }
+    
+    @Override
+    public ResponseEntity<Map<String, List<ThemeDto>>> getThemes(String marathonId) {
+        final var themes = this.marathonService.findThemes(marathonId);
+
+        return ResponseEntity.ok()
+            .cacheControl(CacheControl.noCache())
+            .body(
+                this.themeMapper.toThemeMap(themes)
+            );
+    }
+
+    @Override
+    public ResponseEntity<BooleanStatusDto> updateThemes(String marathonId, ThemesUpdateRequest body) {
+
+        this.marathonService.updateThemes(
+            marathonId,
+            this.themeMapper.fromThemeMap(body.getThemes()).stream().peek((t) -> t.setMarathonId(marathonId)).toList()
+        );
 
         return ResponseEntity.ok()
             .cacheControl(CacheControl.noCache())

@@ -9,6 +9,7 @@ import app.oengus.domain.exception.MarathonNotFoundException;
 import app.oengus.domain.marathon.Marathon;
 import app.oengus.domain.marathon.MarathonStats;
 import app.oengus.domain.marathon.Question;
+import app.oengus.domain.marathon.Theme;
 import app.oengus.domain.submission.Selection;
 import app.oengus.domain.webhook.CategoryAndUserId;
 import app.oengus.domain.webhook.WebhookSelectionDone;
@@ -123,6 +124,40 @@ public class MarathonService {
         }
 
         if (questionRemoved) {
+            this.marathonPersistencePort.save(marathon);
+        }
+    }
+
+    public List<Theme> findThemes(final String id) {
+        return this.marathonPersistencePort.findById(id)
+            .orElseThrow(MarathonNotFoundException::new)
+            .getThemes();
+    }
+
+    public void updateThemes(final String marathonId, final List<Theme> themes) {
+        final var marathon = this.marathonPersistencePort.findById(marathonId)
+            .orElseThrow(MarathonNotFoundException::new);
+
+        marathon.setThemes(themes);
+
+        this.marathonPersistencePort.save(marathon);
+    }
+
+    public void removeTheme(final String marathonId, final int themeId) {
+        final var marathon = this.marathonPersistencePort.findById(marathonId)
+            .orElseThrow(MarathonNotFoundException::new);
+
+        final var themes = marathon.getThemes();
+        var themeRemoved = false;
+
+        for (final var theme : themes) {
+            if (theme.getId() == themeId) {
+                themeRemoved = themes.remove(theme);
+                break;
+            }
+        }
+
+        if (themeRemoved) {
             this.marathonPersistencePort.save(marathon);
         }
     }
@@ -250,18 +285,4 @@ public class MarathonService {
             end.withZoneSameInstant(ZoneId.of(zoneId)).plusDays(1L)
         );
     }
-
-    // Disabled, causes issues
-    /*@Scheduled(cron = "0 0 0 * * *")
-    public void clearDonationExtraData() {
-        final List<Marathon> marathons =
-            this.marathonPersistencePort.findNotClearedBefore(
-                ZonedDateTime.now().minusMonths(1L)
-            );
-        marathons.forEach(marathon -> {
-            // TODO: clear donation extra data when we have donations again
-            // TODO: move this to the microservice when we have donations again
-            this.marathonPersistencePort.clear(marathon);
-        });
-    }*/
 }

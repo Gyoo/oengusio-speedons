@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.oengus.oengusio.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app.oengus.oengusio.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.oengus.oengusio.test.iml" filepath="$PROJECT_DIR$/.idea/modules/app.oengus.oengusio.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oengusio-speedons.oengusio.main.iml" filepath="$PROJECT_DIR$/.idea/modules/oengusio-speedons.oengusio.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/oengusio.main.iml" filepath="$PROJECT_DIR$/.idea/modules/oengusio.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/oengusio.test.iml" filepath="$PROJECT_DIR$/.idea/modules/oengusio.test.iml" />
     </modules>

@@ -52,6 +52,7 @@ public class Marathon {
     private boolean canEditSubmissions = false;
     // TODO: better model? Separate route?
     private List<Question> questions = new ArrayList<>();
+    private List<Theme> themes = new ArrayList<>();
     private String webhook;
     private String youtube;
     private boolean announceAcceptedSubmissions = false;

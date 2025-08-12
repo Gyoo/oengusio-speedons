@@ -6,16 +6,24 @@ import app.oengus.adapter.rest.dto.v1.MarathonBasicInfoDto;
 import app.oengus.adapter.rest.dto.v1.V1QuestionDto;
 import app.oengus.adapter.rest.dto.v1.request.MarathonCreateRequestDto;
 import app.oengus.adapter.rest.dto.v2.marathon.MarathonSettingsDto;
+import app.oengus.adapter.rest.dto.v2.marathon.ThemeDto;
 import app.oengus.domain.marathon.Marathon;
 import app.oengus.domain.marathon.MarathonStats;
 import app.oengus.domain.marathon.Question;
+import app.oengus.domain.marathon.Theme;
 import org.mapstruct.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Mapper(
     componentModel = "spring",
     injectionStrategy = InjectionStrategy.CONSTRUCTOR,
     uses = {
         UserDtoMapper.class,
+        ThemeDtoMapper.class
     }
 )
 public interface MarathonDtoMapper {
@@ -24,6 +32,7 @@ public interface MarathonDtoMapper {
     // TODO: fix dto
     @Mapping(target = "discordPrivacy", source = "discordPrivate")
     @Mapping(target = "submitsOpen", source = "submissionsOpen")
+    @Mapping(target = "themes", qualifiedByName = "toThemeMap")
     MarathonDto toDto(Marathon marathon);
 
     MarathonStatsDto statsFromDomain(MarathonStats stats);

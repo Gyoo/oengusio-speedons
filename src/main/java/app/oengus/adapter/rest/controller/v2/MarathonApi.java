@@ -5,8 +5,10 @@ import app.oengus.adapter.rest.dto.DataListDto;
 import app.oengus.adapter.rest.dto.v2.MarathonHomeDto;
 import app.oengus.adapter.rest.dto.v2.marathon.MarathonSettingsDto;
 import app.oengus.adapter.rest.dto.v2.marathon.QuestionDto;
+import app.oengus.adapter.rest.dto.v2.marathon.ThemeDto;
 import app.oengus.adapter.rest.dto.v2.marathon.request.ModeratorsUpdateRequest;
 import app.oengus.adapter.rest.dto.v2.marathon.request.QuestionsUpdateRequest;
+import app.oengus.adapter.rest.dto.v2.marathon.request.ThemesUpdateRequest;
 import app.oengus.adapter.rest.dto.v2.users.ProfileDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -18,6 +20,9 @@ import jakarta.annotation.security.PermitAll;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @Tag(name = "marathons-v2")
 @CrossOrigin(maxAge = 3600)
@@ -156,4 +161,45 @@ public interface MarathonApi {
     @DeleteMapping("/{id}/settings/questions/{questionId}")
     @PreAuthorize("canUpdateMarathon(#marathonId)")
     ResponseEntity<BooleanStatusDto> removeQuestion(@PathVariable("id") final String marathonId, @PathVariable("questionId") final int questionId);
+
+    @GetMapping("/{id}/settings/themes")
+    @PreAuthorize("isMarathonMod(#marathonId)")
+    @Operation(
+        summary = "List the themes for a marathon",
+        responses = {
+            @ApiResponse(
+                description = "Themes for the marathon",
+                responseCode = "200",
+                content = @Content(
+                    mediaType = "application/json",
+                    array = @ArraySchema(schema = @Schema(implementation = ThemeDto.class))
+                )
+            )
+        }
+    )
+    ResponseEntity<Map<String, List<ThemeDto>>> getThemes(@PathVariable("id") final String marathonId);
+
+    @PutMapping("/{id}/settings/themes")
+    @PreAuthorize("canUpdateMarathon(#marathonId)")
+    @Operation(
+        summary = "Update the themes for a marathon",
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            content = @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = ThemesUpdateRequest.class)
+            )
+        ),
+        responses = {
+            @ApiResponse(
+                description = "Status: true, Themes have been updated",
+                responseCode = "200",
+                content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = BooleanStatusDto.class)
+                )
+            )
+        }
+    )
+    ResponseEntity<BooleanStatusDto> updateThemes(@PathVariable("id") final String marathonId, @RequestBody final ThemesUpdateRequest body);
+    
 }

@@ -12,6 +12,7 @@ import org.mapstruct.*;
     uses = {
         UserMapper.class,
         QuestionMapper.class,
+        ThemeEntityMapper.class,
     }
 )
 public interface MarathonMapper {

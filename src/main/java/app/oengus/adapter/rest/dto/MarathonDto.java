@@ -3,6 +3,8 @@ package app.oengus.adapter.rest.dto;
 import app.oengus.adapter.jpa.entity.TeamEntity;
 import app.oengus.adapter.rest.dto.v1.V1QuestionDto;
 import app.oengus.adapter.rest.dto.v1.V1UserDto;
+import app.oengus.adapter.rest.dto.v2.marathon.ThemeDto;
+import app.oengus.domain.marathon.Theme;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +12,9 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -50,6 +54,7 @@ public class MarathonDto {
     private boolean hasIncentives;
     private boolean canEditSubmissions;
     private List<V1QuestionDto> questions = new ArrayList<>();
+    private Map<String, List<ThemeDto>> themes = new HashMap<>();
     private boolean hasDonations;
     private String payee;
     private String supportedCharity;

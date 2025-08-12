@@ -52,6 +52,14 @@ public class MarathonPersistenceAdapter implements MarathonPersistencePort {
             }
         });
 
+        entity.getThemes().forEach((theme) -> {
+            theme.setMarathon(entity);
+
+            if (theme.getId() < 1) {
+                theme.setId(null);
+            }
+        });
+
         // HACK: teams are not stored in the current domain model so we need to do it this way.
         entity.setTeams(List.of());
 

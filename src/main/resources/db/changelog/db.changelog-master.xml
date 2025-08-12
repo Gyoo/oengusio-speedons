@@ -1361,4 +1361,19 @@
                                  referencedTableName="game"
                                  referencedColumnNames="id"/>
     </changeSet>
+
+    <changeSet author="gyoo" id="20250810-1">
+        <createTable tableName="theme">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="marathon_id" type="varchar(10)"/>
+            <column name="section" type="text"/>
+            <column name="name" type="text"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="theme" baseColumnNames="marathon_id"
+                                 constraintName="fk_theme_marathon"
+                                 referencedTableName="marathon"
+                                 referencedColumnNames="id"/>
+    </changeSet>
 </databaseChangeLog>

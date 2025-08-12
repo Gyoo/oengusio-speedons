@@ -164,6 +164,10 @@ public class MarathonEntity {
     @OrderBy("position ASC")
     private List<QuestionEntity> questions;
 
+    @OneToMany(mappedBy = "marathon", cascade = ALL, orphanRemoval = true)
+    @OrderBy("section ASC, name ASC")
+    private List<ThemeEntity> themes;
+
     @Column(name = "has_donations")
     private boolean hasDonations = false;
 
