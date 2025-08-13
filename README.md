@@ -19,7 +19,7 @@ _**Disclaimer**: self-hosted instances are not allowed to use the Oengus brandin
 
 #### Setup
 
-A docker image is hosted on docker hub https://hub.docker.com/repository/docker/oengusio/backend
+A docker image is hosted on docker hub https://hub.docker.com/repository/docker/oengusio-speedons/backend
 
 On PostgreSQL, create a database named `oengus`
 

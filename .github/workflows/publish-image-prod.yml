@@ -36,7 +36,7 @@ jobs:
                 with:
                     context: .
                     push: true
-                    tags: oengusio/backend:latest
+                    tags: oengusio-speedons/backend:latest
                     cache-from: type=gha
                     cache-to: type=gha
 
@@ -48,7 +48,7 @@ jobs:
                 env:
                     webhook_url: ${{ secrets.PROD_WEBHOOK_URL }}
 
-            -   name: Trigger sandbox webhook
-                uses: distributhor/workflow-webhook@v3
-                env:
-                    webhook_url: ${{ secrets.SANDBOX_WEBHOOK_URL }}
+#            -   name: Trigger sandbox webhook
+#                uses: distributhor/workflow-webhook@v3
+#                env:
+#                    webhook_url: ${{ secrets.SANDBOX_WEBHOOK_URL }}

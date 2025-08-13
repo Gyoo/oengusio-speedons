@@ -37,7 +37,7 @@ If you haven't used Docker before, you need to do the following:
 Get the Docker image of Oengus from [Docker Hub][Docker image]:
 
 ```shell
-$ docker pull oengusio/backend
+$ docker pull oengusio-speedons/backend
 ```
 
-[Docker image]: <https://hub.docker.com/repository/docker/oengusio/backend>
+[Docker image]: <https://hub.docker.com/repository/docker/oengusio-speedons/backend>
