@@ -6,6 +6,8 @@ import org.apache.logging.log4j.util.Strings;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import static app.oengus.util.StringUtils.limit;
 
 @Component
@@ -24,6 +26,7 @@ public class GameFactory extends AbstractFactory<Game> {
         game.setConsole(faker.videoGame().platform());
         game.setContentWarnings(Strings.join(faker.lorem().words(3), ','));
         game.setEmulated(faker.bool().bool());
+        game.setThemes(faker.lorem().words(2));
 
         return game;
     }

@@ -28,6 +28,7 @@ public class CategoryFactory extends AbstractFactory<Category> {
         category.setVideo(limit(faker.internet().url(), 100));
         category.setType(faker.options().option(RunType.values()));
         category.setCode(faker.letterify("??????"));
+        category.setHighlights(limit(faker.lorem().paragraph(),1000));
 
         return category;
     }
