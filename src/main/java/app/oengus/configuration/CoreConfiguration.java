@@ -24,7 +24,7 @@ public class CoreConfiguration implements WebMvcConfigurer {
             .exposedHeaders("Location", "Origin")
             // FUCK https://stackoverflow.com/questions/48712638/cors-for-spring-boot-not-in-response-header
             .allowedMethods("GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
-            .allowedOrigins("*")
+            .allowedOrigins("http://localhost:4200")
             .allowCredentials(false)
             .allowedHeaders("*");
     }
