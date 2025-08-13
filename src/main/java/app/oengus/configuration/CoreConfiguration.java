@@ -23,7 +23,7 @@ public class CoreConfiguration implements WebMvcConfigurer {
             .maxAge(3600)
             .exposedHeaders("Location", "Origin")
             // FUCK https://stackoverflow.com/questions/48712638/cors-for-spring-boot-not-in-response-header
-            .allowedMethods("GET", "PUT", "POST", "DELETE", "PATCH")
+            .allowedMethods("GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
             .allowedOrigins("*")
             .allowCredentials(false)
             .allowedHeaders("*");
