@@ -36,7 +36,7 @@ jobs:
                 with:
                     context: .
                     push: true
-                    tags: oengusio-speedons/backend:latest
+                    tags: oengusspeedons/backend:latest
                     cache-from: type=gha
                     cache-to: type=gha
 
