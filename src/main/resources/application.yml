@@ -22,6 +22,7 @@ rabbitmq:
     uri: ${AMQP_URI}
     username: ${AMQP_USERNAME}
     password: ${AMQP_PASSWORD}
+    virtual-host: ${AMQP_VHOST:'/'}
 
 paypal:
     clientId: ${PAYPAL_CLIENT_ID}

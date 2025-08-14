@@ -36,6 +36,7 @@ rabbitmq:
     uri: 'amqp://example.com:5672'
     username: ''
     password: ''
+    virtual-host: '/'
 
 spring:
     profiles:
