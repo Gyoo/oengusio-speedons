@@ -23,9 +23,9 @@ public class CategoryFactory extends AbstractFactory<Category> {
         );
 
         category.setName(faker.leagueOfLegends().champion() + "%");
-        category.setEstimate(faker.duration().atMostHours(69).plusSeconds(10));
-        category.setDescription(limit(faker.backToTheFuture().quote(), Category.DESCRIPTION_MAX_LENGTH));
-        category.setVideo(limit(faker.internet().url(), Category.VIDEO_MAX_LENGTH));
+        category.setEstimate(faker.duration().atMostHours(69));
+        category.setDescription(limit(faker.backToTheFuture().quote(), 300));
+        category.setVideo(limit(faker.internet().url(), 100));
         category.setType(faker.options().option(RunType.values()));
         category.setCode(faker.letterify("??????"));
         category.setHighlights(limit(faker.lorem().paragraph(),1000));

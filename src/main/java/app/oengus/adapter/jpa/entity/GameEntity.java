@@ -1,12 +1,13 @@
 package app.oengus.adapter.jpa.entity;
 
-import app.oengus.domain.submission.Game;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Hibernate;
+import org.springframework.beans.BeanUtils;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -26,17 +27,17 @@ public class GameEntity {
 
     @Column(name = "name")
     @NotBlank
-    @Size(max = Game.NAME_MAX_LENGTH)
+    @Size(max = 100)
     private String name;
 
     @Column(name = "description")
     @NotBlank
-    @Size(max = Game.DESCRIPTION_MAX_LENGTH)
+    @Size(max = 500)
     private String description;
 
     @Column(name = "console")
     @NotBlank
-    @Size(max = Game.CONSOLE_MAX_LENGTH) // can grow upto 100 due to db type being varchar(100)
+    @Size(max = 45) // can grow upto 100 due to db type being varchar(100)
     private String console;
 
     @Column(name = "content_warnings")

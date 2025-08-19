@@ -1,15 +1,17 @@
 package app.oengus.adapter.jpa.entity;
 
-import app.oengus.domain.submission.Category;
 import app.oengus.domain.submission.RunType;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Hibernate;
+import org.hibernate.validator.constraints.time.DurationMin;
+import org.springframework.beans.BeanUtils;
+
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.validator.constraints.time.DurationMin;
 
 import javax.annotation.Nullable;
 import java.time.Duration;
@@ -33,7 +35,7 @@ public class CategoryEntity {
 
     @Column(name = "name")
     @NotBlank
-    @Size(max = Category.NAME_MAX_LENGTH)
+    @Size(max = 100)
     private String name;
 
     @Column(name = "estimate")
@@ -42,11 +44,11 @@ public class CategoryEntity {
     private Duration estimate;
 
     @Column(name = "description")
-    @Size(max = Category.DESCRIPTION_MAX_LENGTH)
+    @Size(max = 300)
     private String description;
 
     @Column(name = "video")
-    @Size(max = Category.VIDEO_MAX_LENGTH)
+    @Size(max = 100)
     private String video;
 
     @Column(name = "run_type")
@@ -92,6 +94,18 @@ public class CategoryEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, estimate, description, video, type, canRace, highlights);
+    }
+
+    @Deprecated(forRemoval = true)
+    public CategoryEntity fresh(GameEntity parent) {
+        final CategoryEntity category = new CategoryEntity();
+
+        Hibernate.initialize(this.getOpponents());
+        BeanUtils.copyProperties(this, category, "game");
+
+        category.setGame(parent);
+
+        return category;
     }
 
     public static CategoryEntity ofId(int id) {

@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public class PageDto<T> {
-    private final List<T> data;
+    private final List<T> content;
     private final int totalPages;
     private final int currentPage;
     private final boolean first;
@@ -13,7 +13,7 @@ public class PageDto<T> {
     private final boolean empty;
 
     public PageDto(Page<T> page) {
-        this.data = page.getContent();
+        this.content = page.getContent();
         this.totalPages = page.getTotalPages();
         this.currentPage = page.getNumber() + 1;
         this.first = page.isFirst();
@@ -21,14 +21,8 @@ public class PageDto<T> {
         this.empty = page.isEmpty();
     }
 
-    // Use the "data" field instead
-    @Deprecated
     public List<T> getContent() {
-        return data;
-    }
-
-    public List<T> getData() {
-        return this.data;
+        return content;
     }
 
     public int getTotalPages() {

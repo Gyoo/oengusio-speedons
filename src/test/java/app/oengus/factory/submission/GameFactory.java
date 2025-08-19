@@ -22,7 +22,7 @@ public class GameFactory extends AbstractFactory<Game> {
         final var game = new Game(-1, submissionId);
 
         game.setName(faker.appliance().equipment());
-        game.setDescription(limit(faker.lorem().paragraph(10), Game.DESCRIPTION_MAX_LENGTH));
+        game.setDescription(limit(faker.lorem().paragraph(10), 500));
         game.setConsole(faker.videoGame().platform());
         game.setContentWarnings(Strings.join(faker.lorem().words(3), ','));
         game.setEmulated(faker.bool().bool());

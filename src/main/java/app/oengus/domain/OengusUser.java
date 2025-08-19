@@ -42,7 +42,6 @@ public class OengusUser implements IUsername {
     private ZonedDateTime createdAt;
     private ZonedDateTime lastLogin;
     private boolean needsPasswordReset;
-    private boolean savedGamesPublic = true;
 
     private String patreonId;
     private String discordId;
