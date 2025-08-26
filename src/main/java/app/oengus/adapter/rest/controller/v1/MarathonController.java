@@ -49,7 +49,7 @@ public class MarathonController {
     private final SubmissionService submissionService;
 
     @PutMapping
-    @PreAuthorize("hasVerifiedEmailAndIsNotBanned()")
+    @PreAuthorize("hasVerifiedEmailAndIsNotBanned() && isAdmin()")
     @Operation(hidden = true)
     public ResponseEntity<?> create(
         @RequestBody @Valid final MarathonCreateRequestDto createRequest, final BindingResult bindingResult
