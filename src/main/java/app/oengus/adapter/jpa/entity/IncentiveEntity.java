@@ -68,5 +68,17 @@ public class IncentiveEntity {
 
         return incentive;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        IncentiveEntity that = (IncentiveEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(duration, that.duration) && Objects.equals(description, that.description) && incentiveType == that.incentiveType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, duration, description, incentiveType);
+    }
 }
 
