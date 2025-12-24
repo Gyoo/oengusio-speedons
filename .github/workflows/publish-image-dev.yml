@@ -29,6 +29,10 @@ jobs:
                     username: ${{ secrets.DOCKER_USERNAME }}
                     password: ${{ secrets.DOCKER_TOKEN }}
 
+            -   name: write google creds
+                run: |
+                    printf '%s' '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}' > google-creds.json
+
             -   name: Build and push
                 id: docker_build
                 uses: docker/build-push-action@v3

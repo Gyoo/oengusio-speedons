@@ -39,9 +39,6 @@ twitch:
         scope:
             - openid
 
-google:
-    credentialsJson: ${GOOGLE_CREDENTIALS_JSON}
-
 server:
     undertow:
         accesslog:
