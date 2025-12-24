@@ -18,7 +18,7 @@ dependencyManagement {
 
 project.group = "app.oengus"
 // Version code is year.month.(release num)
-project.version = "2025.06.1"
+project.version = "2025.12.1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -115,6 +115,13 @@ dependencies {
     // security and shit
     implementation("org.apache.logging.log4j:log4j-to-slf4j:2.25.1")
     implementation("org.passay:passay:1.6.6")
+
+    // Google
+    implementation("com.google.api-client:google-api-client:1.35.2")
+    implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
+    implementation("com.google.apis:google-api-services-sheets:v4-rev612-1.25.0")
+    implementation("com.google.auth:google-auth-library-credentials:1.11.0")
+    implementation("com.google.auth:google-auth-library-oauth2-http:1.11.0")
 
     // idk
     implementation("org.javassist:javassist:3.30.2-GA")

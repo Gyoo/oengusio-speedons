@@ -3,6 +3,7 @@ package app.oengus.application;
 import app.oengus.adapter.rest.dto.v2.marathon.GameDto;
 import app.oengus.adapter.rest.dto.v2.marathon.SubmissionDto;
 import app.oengus.adapter.rest.mapper.UserDtoMapper;
+import app.oengus.application.export.GSheetsExports;
 import app.oengus.application.port.persistence.*;
 import app.oengus.domain.OengusUser;
 import app.oengus.domain.marathon.Marathon;
@@ -46,6 +47,7 @@ public class SubmissionService {
     private final GamePersistencePort gamePersistencePort;
     private final UserPersistencePort userPersistencePort;
     private final SelectionPersistencePort selectionPersistencePort;
+    private final GSheetsExports gSheetsExports;
 
     private final OengusWebhookService webhookService;
     private final UserDtoMapper userMapper;
@@ -244,7 +246,11 @@ public class SubmissionService {
             });
         }*/
 
-        return this.submissionPersistencePort.save(submission);
+        Submission saved = this.submissionPersistencePort.save(submission);
+
+        gSheetsExports.updateSubmission(saved);
+
+        return saved;
     }
 
     public Map<String, List<AvailabilityDto>> getRunnersAvailabilitiesForMarathon(final String marathonId) {

@@ -193,26 +193,6 @@ public class UserService {
         this.save(user);
     }
 
-    // TODO: reimplement this when we actually do applications.
-    /*public ApplicationUserInformation getApplicationInfo(User user) throws NotFoundException {
-        return this.applicationUserInformationRepository.findByUser(user)
-            .orElseThrow(() -> new NotFoundException("Application not found"));
-    }
-
-    public ApplicationUserInformation updateApplicationInfo(User user, ApplicationUserInformationDto dto) {
-        ApplicationUserInformation infoForUser = this.applicationUserInformationRepository.findByUser(user).orElse(null);
-
-        if (infoForUser == null) {
-            infoForUser = new ApplicationUserInformation();
-            infoForUser.setId(-1);
-            infoForUser.setUser(user);
-        }
-
-        BeanHelper.copyProperties(dto, infoForUser);
-
-        return this.applicationUserInformationRepository.save(infoForUser);
-    }*/
-
 
     // TODO: move to auth?
     public SyncDto sync(final String host, final LoginRequest request) throws LoginException {
