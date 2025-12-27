@@ -248,7 +248,7 @@ public class SubmissionService {
 
         Submission saved = this.submissionPersistencePort.save(submission);
 
-        gSheetsExports.updateSubmission(saved);
+        gSheetsExports.updateSubmission(saved, marathon);
 
         return saved;
     }
