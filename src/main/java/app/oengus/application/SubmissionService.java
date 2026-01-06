@@ -508,6 +508,8 @@ public class SubmissionService {
 //                this.gamePersistencePort.deleteById(game.getId());
 //            });
             this.submissionPersistencePort.delete(submission);
+            Submission deletedSubmissionForGsheetsExport = new Submission(id, marathon.getId());
+            this.gSheetsExports.updateSubmission(deletedSubmissionForGsheetsExport, marathon);
         } else {
             throw new OengusBusinessException("NOT_AUTHORIZED");
         }
