@@ -96,7 +96,7 @@ public class AuthApiController implements AuthApi {
        this.emailVerificationPersistencePort.delete(verification);
 
         return ResponseEntity.ok()
-            .body("<h1>Thank you for verifying your email address.</h1><p>If you haven't already, you can <a href=\"https://oengus.io/\">log-in on Oengus</a></p>");
+            .body("<h1>Thank you for verifying your email address.</h1><p>If you haven't already, you can <a href=\"https://candidatures.speedons.fr/\">log-in on Oengus Speedons</a></p>");
     }
 
     @Override
