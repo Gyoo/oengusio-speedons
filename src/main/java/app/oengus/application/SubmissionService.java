@@ -248,7 +248,7 @@ public class SubmissionService {
 
         Submission saved = this.submissionPersistencePort.save(submission);
 
-        gSheetsExports.updateSubmission(saved, marathon);
+        //gSheetsExports.updateSubmission(saved, marathon);
 
         return saved;
     }
@@ -509,7 +509,7 @@ public class SubmissionService {
 //            });
             this.submissionPersistencePort.delete(submission);
             Submission deletedSubmissionForGsheetsExport = new Submission(id, marathon.getId());
-            this.gSheetsExports.updateSubmission(deletedSubmissionForGsheetsExport, marathon);
+            //this.gSheetsExports.updateSubmission(deletedSubmissionForGsheetsExport, marathon);
         } else {
             throw new OengusBusinessException("NOT_AUTHORIZED");
         }
