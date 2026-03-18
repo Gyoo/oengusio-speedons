@@ -38,7 +38,6 @@ public class ScheduleLine {
     private boolean emulated = false;
 
     @Column(name = "ratio")
-    @Size(max = 10)
     private String ratio;
 
     @Column(name = "category_name")
